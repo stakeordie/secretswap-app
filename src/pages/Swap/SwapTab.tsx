@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button, Container } from 'semantic-ui-react';
 import { canonicalizeBalance, humanizeBalance, sortedStringify } from 'utils';
+import {AdditionalInfo} from './AdditionalInfo';
 import { SwapAssetRow } from './SwapAssetRow';
-import { AdditionalInfo } from './AdditionalInfo';
 import { PriceRow } from '../../components/Swap/PriceRow';
 import { compute_offer_amount, compute_swap } from '../../blockchain-bridge/scrt/swap';
 import { SigningCosmWasmClient } from 'secretjs';
-// import { TabsHeader } from './TabsHeader';
 import { BigNumber } from 'bignumber.js';
 import { extractValueFromLogs, getFeeForExecute } from '../../blockchain-bridge';
 import { SwapTokenMap } from './types/SwapToken';
@@ -75,19 +74,9 @@ export class SwapTab extends React.Component<
       this.updateInputs();
     }
 
-    //initial load
-    // if (previousProps.tokens.size !== this.props.tokens.size) {
-    //   const fromToken = this.props.tokens.values().next().value.identifier;
-    //   const toToken = '';
-    //   this.setState({
-    //     fromToken,
-    //     toToken,
-    //   });
-    // }
   }
 
   async updateInputs() {
-    //const selectedPairSymbol = `${this.state.fromToken}-${this.state.toToken}`;
     const pair = this.props.selectedPair;
     if (!pair) {
       this.setState({
@@ -170,8 +159,6 @@ export class SwapTab extends React.Component<
   }
 
   render() {
-    // const selectedPairSymbol = `${this.state.fromToken}/${this.state.toToken}`;
-    // const pair = this.props.pairFromSymbol[selectedPairSymbol];
     const pair = this.props.selectedPair;
 
     const ask_pool = pair
@@ -455,14 +442,6 @@ export class SwapTab extends React.Component<
               new BigNumber(1).minus(this.state.slippageTolerance),
             )}
             pairAddress={this.props.selectedPair?.contract_addr}
-            /*
-            maximumSold={
-              this.state.isFromEstimated
-                ? Number(this.state.fromInput) *
-                  (1 + this.state.slippageTolerance)
-                : null
-            }
-            */
           />
         )}
       </>

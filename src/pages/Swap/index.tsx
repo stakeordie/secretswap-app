@@ -8,12 +8,8 @@ import { fixUnlockToken, isEmptyObject, sleep, unlockToken } from 'utils';
 import { UserStoreEx } from 'stores/UserStore';
 import { observer } from 'mobx-react';
 import { SwapTab } from './SwapTab';
-import { ProvideTab } from './ProvideTab';
-import { WithdrawTab } from './WithdrawTab';
 import { BigNumber } from 'bignumber.js';
 import { getNativeBalance, unlockJsx, wrongViewingKey } from './utils';
-import { BetaWarning } from '../../components/Swap/BetaWarning';
-import { SwapFooter } from './Footer';
 import { GetSnip20Params } from '../../blockchain-bridge';
 import { loadTokensFromList } from './LocalTokens/LoadTokensFromList';
 import { ISecretSwapPair, ITokenInfo } from '../../stores/interfaces';
@@ -23,7 +19,6 @@ import { SwapToken, SwapTokenMap, TokenMapfromITokenInfo } from './types/SwapTok
 import LocalStorageTokens from '../../blockchain-bridge/scrt/CustomTokens';
 import cogoToast from 'cogo-toast';
 import { pairIdFromTokenIds, PairMap, SwapPair } from './types/SwapPair';
-import { KeplrButton } from '../../components/Secret/KeplrButton';
 import { NativeToken, Token } from './types/trade';
 import { SecretSwapPairs } from 'stores/SecretSwapPairs';
 
@@ -172,8 +167,7 @@ export class SwapRouter extends React.Component<
     if (!height) {
       height = await this.props.user.secretjs.getHeight();
     }
-
-    //console.log(`Hello from refreshBalances for height: ${height}`);
+ 
     const balanceTasks = tokenSymbols.map(s => {
       return this.refreshTokenBalance(height, s);
     });
@@ -277,7 +271,6 @@ export class SwapRouter extends React.Component<
 
   private async refreshTokenBalance(height: number, tokenSymbol: string) {
     if (height <= this.symbolUpdateHeightCache[tokenSymbol]) {
-      //console.log(`${tokenSymbol} already fresh for height ${height}`);
       return {};
     }
 
@@ -588,15 +581,6 @@ export class SwapRouter extends React.Component<
   }
 
   render() {
-    // const isSwap = window.location.hash === '#Swap';
-    // const isProvide = window.location.hash === '#Provide';
-    // const isWithdraw = window.location.hash === '#Withdraw';
-    // const isPools = window.location.hash === '#Pool';
-
-    // if (!isSwap && !isProvide && !isWithdraw && !isPools) {
-    //   window.location.hash = 'Swap';
-    //   return <></>;
-    // }
 
     return (
       <BaseContainer>
@@ -616,7 +600,6 @@ export class SwapRouter extends React.Component<
               }}
               pad={{ bottom: 'medium' }}
             >
-              {/* <KeplrButton /> */} 
                 <SwapTab
                   secretjs={this.props.user.secretjs}
                   tokens={this.state.allTokens}
@@ -627,43 +610,7 @@ export class SwapRouter extends React.Component<
                   notify={this.notify}
                   onSetTokens={async (token0, token1) => await this.onSetTokens(token0, token1)}
                 />
-              {/* {isProvide && (
-                <ProvideTab
-                  user={this.props.user}
-                  secretjs={this.props.user.secretjs}
-                  tokens={this.state.allTokens}
-                  balances={this.state.balances}
-                  pairs={this.state.pairs}
-                  selectedPair={this.state.selectedPair}
-                  selectedToken0={this.state.selectedToken0}
-                  selectedToken1={this.state.selectedToken1}
-                  notify={this.notify}
-                  onSetTokens={async (token0, token1) => await this.onSetTokens(token0, token1)}
-                />
-              )}
-              {isWithdraw && (
-                <WithdrawTab
-                  user={this.props.user}
-                  secretjs={this.props.user.secretjs}
-                  tokens={this.state.allTokens}
-                  balances={this.state.balances}
-                  pairs={this.state.pairs}
-                  notify={this.notify}
-                  updateToken={async (pair: SwapPair) => {
-                    this.registerPairQueries(pair);
-                    await this.refreshBalances({
-                      pair,
-                      tokenSymbols: [pair.asset_infos[0].symbol, pair.asset_infos[1].symbol],
-                    });
-                  }}
-                  onCloseTab={pair => {
-                    this.unSubscribePair(pair);
-                  }}
-                />
-              )} */}
             </Box>
-            {/* <SwapFooter /> */}
-            {/* <BetaWarning secretjs={this.props.user.secretjs} /> */}
           </Box>
         </PageContainer>
       </BaseContainer>
