@@ -254,7 +254,7 @@ export class SwapTab extends React.Component<
           </div>
           <SwapAssetRow
             secretjs={this.props.secretjs}
-            label="To"
+            label="To (estimated)"
             maxButton={false}
             balance={toBalance}
             tokens={this.props.tokens}
