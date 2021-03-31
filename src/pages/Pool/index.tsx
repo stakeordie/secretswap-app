@@ -616,7 +616,7 @@ export class SwapRouter extends React.Component<
               }}
               pad={{ bottom: 'medium' }}
             >
-              <KeplrButton />
+              {/* <KeplrButton /> */}
               {isSwap && (
                 <SwapTab
                   secretjs={this.props.user.secretjs}
