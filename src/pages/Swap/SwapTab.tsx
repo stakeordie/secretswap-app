@@ -285,6 +285,7 @@ export class SwapTab extends React.Component<
               borderRadius: '12px',
               padding: '18px',
               fontSize: '20px',
+              fontFamily: 'Poppins,Arial, Helvetica, sans-serif'
             }}
             onClick={async () => {
               if (this.state.priceImpact >= 0.15) {
