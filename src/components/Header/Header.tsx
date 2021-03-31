@@ -1,6 +1,9 @@
 import React from 'react';
 import  "./header.scss";
-import Secret_swap from '../../../public/static/secret-swap.svg';
+// Import Icons
+import SecretSwap from '../../../public/static/secret-swap.svg';
+import KeplrIcon from '../../../public/static/keplricon.svg';
+import Key from '../../../public/static/key.png';
 
 const Header = () =>{
 
@@ -8,32 +11,31 @@ const Header = () =>{
         <>
             <nav className="menu">
 
-                {/* <div className="content_brand">
-                    <div className="brand">
-                        <img src={Secret_swap} alt="Logo" className="icon"></img>
-                        <p>Secret Swap</p>
-                    </div>
-                </div> */}
+                <div className="menu-left">
+                    <ul>
+                        {/* Brand Icon */}
+                        <img src={SecretSwap} alt="brand logo"/>
+                        <li><a href={"/swap"}>Swap</a></li>
+                        <li><a href={"/pool"}>Pool</a></li>
+                        <li><a href="#">Earn</a></li>
+                        <li><a href="#">Governance</a></li>
+                    </ul>
+                </div>
                 
-                <ul>
-
-                    {/* Brand Icon */}
-                    <li><a href="#">Swap</a></li>
-                    <li><a href="#">Pool</a></li>
-                    <li><a href="#">Earn</a></li>
-                    <li><a href="#">Governance</a></li>
-
-                </ul>
-
-                <div className="">
-                     {/* Buttons */}
-                     <button className="btn-main">
-                        <li><a href="#">324 SCRT</a></li>
+                <div className="menu-right">
+                    
+                    <button className="btn-main">
+                        <a href="#">324 SCRT</a>
                     </button>
                     <button className="btn-secondary">
-                        <li><a href="#">324 SEFI</a></li>
+                        <a href="#">324 SEFI</a>
                     </button>
+                
+                    <img src={Key} alt="Key Icon"/>
+                    <img src={KeplrIcon} alt="Keplr Icon"/>
+                    
                 </div>
+
             </nav>
 
 
