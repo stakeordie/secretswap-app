@@ -606,11 +606,12 @@ export class SwapRouter extends React.Component<
           >
             <Box
               style={{
-                maxWidth: '420px',
+                maxWidth: '500px',
                 minWidth: '420px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                borderRadius: '16px'
               }}
               pad={{ bottom: 'medium' }}
             >

@@ -7,7 +7,6 @@ const buttonStyle = {
   borderRadius: '4px',
   padding: '11px, 42px, 11px, 42px',
   fontSize: '16px',
-  widht: '448px',
   height: '46px',
   fontWeight: '600'
 };
