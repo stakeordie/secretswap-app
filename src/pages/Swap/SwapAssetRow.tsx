@@ -3,10 +3,10 @@ import React from 'react';
 import { displayHumanizedBalance, humanizeBalance } from 'utils';
 import { Button, Container } from 'semantic-ui-react';
 import Loader from 'react-loader-spinner';
-import { TokenSelector } from './TokenSelector/TokenSelector';
+import { TokenSelector } from '../TokenModal/TokenSelector/TokenSelector';
 import { SwapInput } from '../../components/Swap/SwapInput';
 import { SigningCosmWasmClient } from 'secretjs';
-import { SwapTokenMap } from './types/SwapToken';
+import { SwapTokenMap } from '../TokenModal/types/SwapToken';
 import { FlexRowSpace } from '../../components/Swap/FlexRowSpace';
 
 export const SwapAssetRow = ({
@@ -33,10 +33,16 @@ export const SwapAssetRow = ({
   secretjs: SigningCosmWasmClient;
 }) => {
   const font = {
-    fontWeight: 500,
-    fontSize: '14px',
-    color: 'rgb(86, 90, 105)',
+    fontWeight: 400,
+    fontSize: '16px',
+    color: '#5F5F6B',
+    fontFamily:'Poppins,Arial, Helvetica, sans-serif'
   };
+  const balanceStyle ={
+    display:'flex',
+    padding: '.5rem 1rem',
+    ...font,
+  }
 
   return (
     <Container
@@ -58,13 +64,13 @@ export const SwapAssetRow = ({
         </span>
         <FlexRowSpace />
         {token && (
-          <div style={{ display: 'flex' }}>
+          <div style={balanceStyle}>
             {'Balance: '}
             {(() => {
               if (balance === undefined) {
                 return (
                   <>
-                    <span style={{ marginRight: '0.5em' }} />
+                    <span style={balanceStyle} />
                     <Loader type="ThreeDots" color="#00BFFF" height="1em" width="1em" style={{ margin: 'auto' }} />
                   </>
                 );

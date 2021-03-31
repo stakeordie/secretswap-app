@@ -8,9 +8,9 @@ import { compute_offer_amount, compute_swap } from '../../blockchain-bridge/scrt
 import { SigningCosmWasmClient } from 'secretjs';
 import { BigNumber } from 'bignumber.js';
 import { extractValueFromLogs, getFeeForExecute } from '../../blockchain-bridge';
-import { SwapTokenMap } from './types/SwapToken';
+import { SwapTokenMap } from '../TokenModal/types/SwapToken';
 import { FlexRowSpace } from '../../components/Swap/FlexRowSpace';
-import { SwapPair } from './types/SwapPair';
+import { SwapPair } from '../TokenModal/types/SwapPair';
 import { DownArrow } from '../../ui/Icons/DownArrow';
 import cn from 'classnames';
 import * as styles from './styles.styl';
@@ -225,7 +225,7 @@ export class SwapTab extends React.Component<
           />
           <div
             style={{
-              padding: '1em',
+              padding: '2em',
               display: 'flex',
               alignContent: 'center',
             }}
@@ -284,7 +284,9 @@ export class SwapTab extends React.Component<
               margin: '1em 0 0 0',
               borderRadius: '12px',
               padding: '18px',
-              fontSize: '20px',
+              fontSize: '16px',
+              fontWeight:'600',
+              fontFamily: 'Poppins,Arial, Helvetica, sans-serif'
             }}
             onClick={async () => {
               if (this.state.priceImpact >= 0.15) {
