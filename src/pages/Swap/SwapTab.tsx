@@ -8,9 +8,9 @@ import { compute_offer_amount, compute_swap } from '../../blockchain-bridge/scrt
 import { SigningCosmWasmClient } from 'secretjs';
 import { BigNumber } from 'bignumber.js';
 import { extractValueFromLogs, getFeeForExecute } from '../../blockchain-bridge';
-import { SwapTokenMap } from './types/SwapToken';
+import { SwapTokenMap } from '../TokenModal/types/SwapToken';
 import { FlexRowSpace } from '../../components/Swap/FlexRowSpace';
-import { SwapPair } from './types/SwapPair';
+import { SwapPair } from '../TokenModal/types/SwapPair';
 import { DownArrow } from '../../ui/Icons/DownArrow';
 import cn from 'classnames';
 import * as styles from './styles.styl';
