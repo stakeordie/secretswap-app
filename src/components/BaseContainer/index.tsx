@@ -5,6 +5,7 @@ import { MainFooter } from 'components';
 import { withTheme } from 'styled-components';
 import { IStyledChildrenProps } from 'interfaces';
 //import * as styles from './styles.styl';
+import Header from '../Header/Header';
 
 export const BaseContainer: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
   ({ theme, children, ...props }: IStyledChildrenProps<BoxProps>) => {
@@ -20,7 +21,7 @@ export const BaseContainer: React.FC<IStyledChildrenProps<BoxProps>> = withTheme
             width: '100vw',  
           }}
         >
-          <Head />
+          <Header />
           <Box
             style={{ 
               width:'100%',
@@ -31,6 +32,7 @@ export const BaseContainer: React.FC<IStyledChildrenProps<BoxProps>> = withTheme
           >
             {children}
           </Box>
+          {/* <MainFooter /> */}
         </div>
       </>
     );
