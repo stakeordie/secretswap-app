@@ -588,13 +588,11 @@ export class SwapRouter extends React.Component<
   }
 
   render() {
-    const isSwap = window.location.hash === '#Swap';
     const isProvide = window.location.hash === '#Provide';
     const isWithdraw = window.location.hash === '#Withdraw';
-    const isPools = window.location.hash === '#Pool';
 
-    if (!isSwap && !isProvide && !isWithdraw && !isPools) {
-      window.location.hash = 'Swap';
+    if (!isProvide && !isWithdraw) {
+      window.location.hash = 'Provide';
       return <></>;
     }
 
@@ -617,18 +615,6 @@ export class SwapRouter extends React.Component<
               pad={{ bottom: 'medium' }}
             >
               {/* <KeplrButton /> */}
-              {isSwap && (
-                <SwapTab
-                  secretjs={this.props.user.secretjs}
-                  tokens={this.state.allTokens}
-                  balances={this.state.balances}
-                  selectedPair={this.state.selectedPair}
-                  selectedToken0={this.state.selectedToken0}
-                  selectedToken1={this.state.selectedToken1}
-                  notify={this.notify}
-                  onSetTokens={async (token0, token1) => await this.onSetTokens(token0, token1)}
-                />
-              )}
               {isProvide && (
                 <ProvideTab
                   user={this.props.user}
