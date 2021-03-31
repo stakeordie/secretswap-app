@@ -82,41 +82,40 @@ export const TokenSelector = (props: {
               No results found.
             </div>
           ) : (
-            filteredTokens
-              .sort((a, b) => {
-                /* sSCRT first */
-                if (a.symbol === 'sSCRT') {
-                  return -1;
+            <div className={styles.listTokens__container}>
+              <div className={styles.listTokens__subcontainer}>
+                {
+                  filteredTokens
+                    .sort((a, b) => {
+                      /* sSCRT first */
+                      if (a.symbol === 'sSCRT') {
+                        return -1;
+                      }
+                      if (b.symbol === 'sSCRT') {
+                        return 1;
+                      }
+      
+                      const aSymbol = a.symbol.replace(/^s/, '');
+                      const bSymbol = b.symbol.replace(/^s/, '');
+      
+                      return aSymbol.localeCompare(bSymbol);
+                    })
+                    .map(t => {
+                      return (
+                        <TokenInfoRow
+                          key={t.identifier}
+                          token={t}
+                          onClick={() => {
+                            props?.onClick ? props.onClick(t.identifier) : (() => {})();
+                            setOpen(false);
+                            setSearchText('');
+                          }}
+                        />
+                      );
+                    })
                 }
-                if (b.symbol === 'sSCRT') {
-                  return 1;
-                }
-                /* then sUNILP-WSCRT-ETH ? */
-                // if (a.symbol === 'sUNILP-WSCRT-ETH') {
-                //   return -1;
-                // }
-                // if (b.symbol === 'sUNILP-WSCRT-ETH') {
-                //   return 1;
-                // }
-
-                const aSymbol = a.symbol.replace(/^s/, '');
-                const bSymbol = b.symbol.replace(/^s/, '');
-
-                return aSymbol.localeCompare(bSymbol);
-              })
-              .map(t => {
-                return (
-                  <TokenInfoRow
-                    key={t.identifier}
-                    token={t}
-                    onClick={() => {
-                      props?.onClick ? props.onClick(t.identifier) : (() => {})();
-                      setOpen(false);
-                      setSearchText('');
-                    }}
-                  />
-                );
-              })
+              </div>
+            </div>
           )
         ) : (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
