@@ -15,7 +15,9 @@ import { DownArrow } from '../../ui/Icons/DownArrow';
 import cn from 'classnames';
 import * as styles from './styles.styl';
 import { storeTxResultLocally } from './utils';
-
+const baseButtonStyle = { margin: '1em 0 0 0', borderRadius: '4px', padding: '11px 42px', fontSize: '16px', fontWeight: '600', height: '46px', } 
+const disableButtonStyle = { ...baseButtonStyle, color: '#5F5F6B', background: '#DEDEDE', }; 
+const enableButtonStyle = { ...baseButtonStyle, color: '#FFFFFF', background: '#1B1B1B', };
 const BUTTON_MSG_ENTER_AMOUNT = 'Enter an amount';
 const BUTTON_MSG_NO_TRADNIG_PAIR = 'Trading pair does not exist';
 const BUTTON_MSG_LOADING_PRICE = 'Loading price data';
@@ -280,14 +282,7 @@ export class SwapTab extends React.Component<
             loading={this.state.loadingSwap}
             primary={buttonMessage === BUTTON_MSG_SWAP}
             fluid
-            style={{
-              margin: '1em 0 0 0',
-              borderRadius: '12px',
-              padding: '18px',
-              fontSize: '16px',
-              fontWeight:'600',
-              fontFamily: 'Poppins,Arial, Helvetica, sans-serif'
-            }}
+            style={(buttonMessage !== BUTTON_MSG_SWAP) ? disableButtonStyle : enableButtonStyle}
             onClick={async () => {
               if (this.state.priceImpact >= 0.15) {
                 const confirmString = 'confirm';
